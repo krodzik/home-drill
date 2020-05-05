@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>TimerLabel.qml</file>
+        <file>TimerButton.qml</file>
+        <file>Training.qml</file>
     </qresource>
 </RCC>

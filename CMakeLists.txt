@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -29,11 +29,18 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 if(ANDROID)
     add_library(home-drill SHARED
       main.cpp
+      Adapter.cpp
+      Timer.cpp
       qml.qrc
     )
 else()
     add_executable(home-drill
       main.cpp
+      Adapter.cpp
+      Adapter.h
+      ITimer.h
+      Timer.cpp
+      Timer.h
       qml.qrc
     )
 endif()
