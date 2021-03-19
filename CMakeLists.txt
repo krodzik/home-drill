@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.14)
 
 project(home-drill LANGUAGES CXX)
 
@@ -24,28 +24,34 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+
+set(PROJECT_SOURCES
+        main.cpp
+        src/Adapter.cpp
+        src/Timer.cpp
+        qml.qrc
+)
+
+set(PROJECT_HEADERS
+        include/Adapter.h
+        include/ITimer.h
+        include/Timer.h
+)
 
 if(ANDROID)
     add_library(home-drill SHARED
-      main.cpp
-      Adapter.cpp
-      Timer.cpp
-      qml.qrc
+      ${PROJECT_SOURCES}
     )
 else()
     add_executable(home-drill
-      main.cpp
-      Adapter.cpp
-      Adapter.h
-      ITimer.h
-      Timer.cpp
-      Timer.h
-      qml.qrc
+      ${PROJECT_SOURCES}
+      ${PROJECT_HEADERS}
     )
 endif()
 
 target_compile_definitions(home-drill
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(home-drill
-  PRIVATE Qt5::Core Qt5::Quick)
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)

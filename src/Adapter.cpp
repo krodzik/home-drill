@@ -1,4 +1,4 @@
-#include "Adapter.h"
+#include "include/Adapter.h"
 
 #include <QDebug>
 
@@ -12,7 +12,7 @@ Adapter::Adapter(std::unique_ptr<ITimer> timer)
             SLOT(onTimerTextChanged(QString)));
 }
 
-Adapter::~Adapter() {}
+Adapter::~Adapter() { }
 
 void Adapter::setRootObject(QObject* root)
 {

@@ -1,4 +1,4 @@
-#include "Timer.h"
+#include "include/Timer.h"
 
 const QTime Timer::TIME_ZERO = QTime(0, 0);
 
@@ -10,7 +10,7 @@ Timer::Timer()
     mTime = QTime(0, 0, 10);
 }
 
-Timer::~Timer() {}
+Timer::~Timer() { }
 
 void Timer::startTimer()
 {
